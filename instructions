@@ -1,0 +1,21 @@
+Setup guide for ubuntu 16.04:-
+Please run this project in python 3.5 or later versions and not in python 2.x.x.
+Install Django before running this project if not already installed by:- 
+sudo pip install django.
+Install Aerospike server by following these steps:- or follow this webpage:- http://www.aerospike.com/docs/operations/install/linux/ubuntu
+
+wget -O aerospike.tgz 'http://aerospike.com/download/server/latest/artifact/ubuntu12'
+# for ubuntu 14.04, replace "ubuntu12" with ubuntu14
+tar -xvf aerospike.tgz
+cd aerospike-server-community-*-ubuntu12*
+# for ubuntu 14.04, replace "ubuntu12" with ubuntu14
+sudo ./asinstall # will install the .deb packages
+sudo service aerospike start && \
+sudo tail -f /var/log/aerospike/aerospike.log | grep cake
+output will be:-
+# wait for it. "service ready: soon there will be cake!"
+
+Now cd to project's directory and type following command in terminal:-
+python manage.py runserver
+Now in your Browser type the following url and u should see the webpage
+http://127.0.0.1:8000/
