@@ -20,6 +20,7 @@ oauthlib==1.0.3
 openpyxl==2.4.0
 padme==1.1.1
 pexpect==4.0.1
+redis==2.10.5
 Pillow==3.1.2
 plainbox==0.25
 ptyprocess==0.5
