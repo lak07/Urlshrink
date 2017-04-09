@@ -2,24 +2,14 @@ Setup guide for ubuntu 16.04:-
 Please run this project in python 3.5 or later versions and not in python 2.x.x.
 Install Django before running this project if not already installed by:- 
 sudo pip install django.
-Install Aerospike server by following these steps:- or follow this webpage:- http://www.aerospike.com/docs/operations/install/linux/ubuntu
+Install redis server by following these steps:- or follow this webpage:- https://www.fullstackpython.com/blog/install-redis-use-python-3-ubuntu-1604.html
 
-wget -O aerospike.tgz 'http://aerospike.com/download/server/latest/artifact/ubuntu12'
-# for ubuntu 14.04, replace "ubuntu12" with ubuntu14
-tar -xvf aerospike.tgz
-cd aerospike-server-community-*-ubuntu12*
-# for ubuntu 14.04, replace "ubuntu12" with ubuntu14
-sudo ./asinstall # will install the .deb packages
-sudo service aerospike start && \
-sudo tail -f /var/log/aerospike/aerospike.log | grep cake
-output will be:-
-# wait for it. "service ready: soon there will be cake!"
+sudo apt-get install redis-server
+Check if server is running via redis-cli
+if not running then start with:- redis-server
 
-Install aerospike client for python:-
-sudo apt-get install python-dev
-sudo apt-get install libssl-dev
-sudo apt-get install python-pip
-sudo pip install aerospike
+Install redis client for python:- pip install redis
+
 
 Now cd to project's directory and type following command in terminal:-
 python manage.py runserver
