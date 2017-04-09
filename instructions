@@ -15,6 +15,12 @@ sudo tail -f /var/log/aerospike/aerospike.log | grep cake
 output will be:-
 # wait for it. "service ready: soon there will be cake!"
 
+Install aerospike client for python:-
+sudo apt-get install python-dev
+sudo apt-get install libssl-dev
+sudo apt-get install python-pip
+sudo pip install aerospike
+
 Now cd to project's directory and type following command in terminal:-
 python manage.py runserver
 Now in your Browser type the following url and u should see the webpage
