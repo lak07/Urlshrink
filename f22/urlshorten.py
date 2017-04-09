@@ -1,19 +1,16 @@
-import aerospike
+import redis
 import random
 import sys
 
-config = {
-  'hosts': [ ('127.0.0.1', 3000) ]
-}
 
 try:
-  client = aerospike.client(config).connect()
+  redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
 except:
-  print("failed to connect to the cluster with", config['hosts'])
+  print("failed to connect to the host")
   sys.exit(1)
 
 class ShortenURL:
-	_charmap = '123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ-_'
+	_charmap = '123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ'
 	_base = len(_charmap)
 	def createurl(self, sid):
 		string = ''
@@ -28,36 +25,25 @@ class ShortenURL:
 			number = number * self._base + self._charmap.index(char)
 		return number
 	def checkexists(self,sid):
-		key=('test','por',sid)	
-		(key, meta) = client.exists(key)
-		if meta == None:
+		if redis_db.exists(sid):
 			return True
 		return False
 	def inserturl(self,url):
-		sid=(random.randint(100000,999999))
+		sid=(random.randint(100000,999999999))
 		if self.checkexists(sid):
-			key=('test','por',sid)		
-		
+			sid=(random.randint(100000,999999999))
+			inserturl(self,url)		
+		else:
 			try:
 				# Write a record
-				client.put(key, {
-				str(sid): url
- 					})
+				redis_db.set(sid,url)
 			except Exception as e:
 				print("error: {0}".format(e), file=sys.stderr)
-			return sid		
-		else:
-			sid=(random.randint(100000,999999))			
-			inserturl(self,url)
+			return sid	
 		
 	def getoriurl(self,shortenedurl):
 		sid=self.createsid(shortenedurl)
-		key=('test','por',sid)
-		try:
-			(key, metadata, record) = client.get(key)
-			return record[str(sid)]	 
-		except:
+		if self.checkexists(sid):
+		      return redis_db.get(sid).decode()
+		else:
 			return 'No Record exist for given short url'
-      
-
-
