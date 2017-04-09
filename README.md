@@ -14,3 +14,6 @@ This approach is best because it uses bijective function for conversion betweeen
 from given id. Bijective function is reliable as it can not give wrong coversions. The url created are short no matter how much the
 length of original url is. It is fast approach as databse used is nosql that stores key value pair and queries fast and conversion
 also takes very less time.
+
+
+Note:- I tried deploying on heroku but credit card is needed use even free version of redis heroku which i don't have. So i can't deploy on heroku as of now.
