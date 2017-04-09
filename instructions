@@ -14,4 +14,7 @@ Install redis client for python:- pip install redis
 Now cd to project's directory and type following command in terminal:-
 python manage.py runserver
 Now in your Browser type the following url and u should see the webpage
-http://127.0.0.1:8000/
+http://127.0.0.1:8000
+
+Note:- I tried deploying on heroku but credit card is needed use even free version of redis heroku which i don't have. 
+So i can't deploy on heroku as of now.
