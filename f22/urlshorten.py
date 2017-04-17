@@ -1,7 +1,9 @@
 import redis
 import random
 import sys
-
+import string
+from f22.models import Post
+from django.shortcuts import render_to_response, get_object_or_404
 
 try:
   redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
@@ -29,21 +31,21 @@ class ShortenURL:
 			return True
 		return False
 	def inserturl(self,url):
-		sid=(random.randint(100000,999999999))
-		if self.checkexists(sid):
-			sid=(random.randint(100000,999999999))
-			inserturl(self,url)		
-		else:
+		short_id = self.get_short_code()
+		b = Post(httpurl=url, short_id=short_id)
+		b.save()
+		return short_id
+	def get_short_code(self):
+		length = 6
+		char =  string.digits
+    # if the randomly generated short_id is used then generate next
+		while True:
+			short_id = ''.join(random.choice(char) for x in range(length))
 			try:
-				# Write a record
-				redis_db.set(sid,url)
-			except Exception as e:
-				print("error: {0}".format(e), file=sys.stderr)
-			return sid	
-		
+				temp = Post.objects.get(pk=short_id)
+			except:
+				return short_id	
 	def getoriurl(self,shortenedurl):
 		sid=self.createsid(shortenedurl)
-		if self.checkexists(sid):
-		      return redis_db.get(sid).decode()
-		else:
-			return 'No Record exist for given short url'
+		url = get_object_or_404(Post, pk=sid)
+		return str(url.httpurl)
