@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+myenv
+
+*.pyc
+
+myproject/ignore_directory
