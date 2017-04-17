@@ -1,6 +1,5 @@
 # Urlshrink
 Webapp that shrinks url's just like bit.ly
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 Approach Used:-
 First the user enters long url in the textfild. This address is stored in the Database with integer ID which is unique
 for every record. The id is randomly generated 6-9 digit integer.
@@ -15,3 +14,6 @@ from given id. Bijective function is reliable as it can not give wrong coversion
 length of original url is. It is fast approach as databse used is nosql that stores key value pair and queries fast and conversion
 also takes very less time.
 
+
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
