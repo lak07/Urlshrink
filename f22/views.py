@@ -16,7 +16,7 @@ def post_new(request):
     form = PostForm() 
     link=ShortenURL()
     response=request.GET.get('Url')
-    val = URLValidator(verify_exists=False)
+    val = URLValidator()
     try:
       val(response)
     except ValidationError:
