@@ -16,6 +16,11 @@ def post_new(request):
     form = PostForm() 
     link=ShortenURL()
     response=request.GET.get('Url')
+    val = URLValidator(verify_exists=False)
+    try:
+      val(response)
+    except ValidationError:
+      return render(request, 'f22/base.html', {'form':form,'Surled': 'Url entered is invalid'})
     if response is not None:
        sid=link.inserturl(response)
        Surl='https://urlshrink.herokuapp.com/'+link.createurl(int(sid))
