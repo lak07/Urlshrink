@@ -15,7 +15,7 @@ def post_new(request):
     response=request.GET.get('Url')
     if response is not None:
        sid=link.inserturl(response)
-       Surl='127.0.0.1:8000/'+link.createurl(int(sid))
+       Surl='https://urlshrink.herokuapp.com/'+link.createurl(int(sid))
     return render(request, 'f22/base.html', {'form':form,'Surled': Surl})
 
 def post_redr(request):
