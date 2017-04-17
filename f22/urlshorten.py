@@ -1,15 +1,8 @@
-import redis
 import random
 import sys
 import string
 from f22.models import Post
 from django.shortcuts import render_to_response, get_object_or_404
-
-try:
-  redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
-except:
-  print("failed to connect to the host")
-  sys.exit(1)
 
 class ShortenURL:
 	_charmap = '123456789abcdefghijklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTVWXYZ'
