@@ -6,6 +6,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.conf import settings
 from .urlshorten import ShortenURL
 from django.shortcuts import render,redirect
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+
 Surl='None'
 response=''
 def post_new(request):
@@ -13,6 +16,11 @@ def post_new(request):
     form = PostForm() 
     link=ShortenURL()
     response=request.GET.get('Url')
+    val = URLValidator(verify_exists=False
+    try:
+        val('http://www.google.com')
+    except ValidationError, e:
+          return render(request, 'f22/base.html', {'form':form,'Surled': 'Url entered is not valid'})
     if response is not None:
        sid=link.inserturl(response)
        Surl='https://urlshrink.herokuapp.com/'+link.createurl(int(sid))
