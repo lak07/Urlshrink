@@ -1,0 +1,5 @@
+{
+  "name": "Urlshrink",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com/lak07/Urlshrink",
+}
