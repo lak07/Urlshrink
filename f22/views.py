@@ -1,5 +1,9 @@
+from django.shortcuts import render_to_response, get_object_or_404
+import random, string, json
+from f22.models import Post
 from .forms import PostForm
-import webbrowser
+from django.http import HttpResponseRedirect, HttpResponse
+from django.conf import settings
 from .urlshorten import ShortenURL
 from django.shortcuts import render,redirect
 Surl='None'
