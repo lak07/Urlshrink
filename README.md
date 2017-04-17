@@ -1,6 +1,6 @@
 # Urlshrink
 Webapp that shrinks url's just like bit.ly
-
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 Approach Used:-
 First the user enters long url in the textfild. This address is stored in the Database with integer ID which is unique
 for every record. The id is randomly generated 6-9 digit integer.
