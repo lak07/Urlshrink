@@ -12,7 +12,7 @@ from django.core.exceptions import ValidationError
 Surl='None'
 response=''
 def handler404(request):
-    response = render_to_response('f22/404.html', {},
+    response = render_to_response('404.html', {},
                                   context_instance=RequestContext(request))
     response.status_code = 404
 def post_new(request):
