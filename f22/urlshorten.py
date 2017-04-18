@@ -19,10 +19,6 @@ class ShortenURL:
 		for char in shortenedurl:
 			number = number * self._base + self._charmap.index(char)
 		return number
-	def checkexists(self,sid):
-		if redis_db.exists(sid):
-			return True
-		return False
 	def inserturl(self,url):
 		short_id = self.get_short_code()
 		b = Post(httpurl=url, short_id=short_id)
